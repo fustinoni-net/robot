@@ -76,11 +76,11 @@ public class Pi2GoLite extends Pi2GoBase implements FrontLeds, RearLeds {
 
     
     private static Pi2GoLite pi2go;
-    private SwitchImpl button;
-    private IRSensorImpl leftIRSensor;
-    private IRSensorImpl rightIRSensor;
-    private IRSensorImpl lineLeftIRSensor;
-    private IRSensorImpl lineRightIRSensor;
+    private Switch button;
+    private IRSensor leftIRSensor;
+    private IRSensor rightIRSensor;
+    private IRSensor lineLeftIRSensor;
+    private IRSensor lineRightIRSensor;
     private Led frontLeds;
     private Led rearLeds;
     private Hcsr04 ultraSoundSensor;
