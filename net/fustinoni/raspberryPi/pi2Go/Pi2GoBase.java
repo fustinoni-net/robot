@@ -1,0 +1,55 @@
+/**
+ * 
+ * **********************************************************************
+ * This file is part of the PI2GO java library project. 
+ *
+ * More information about this project can be found here:  
+ *   http://robots.fustinoni.net
+ * **********************************************************************
+ * 
+ * Copyright (C) 2015 Enrico Fustinoni
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Lesser Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Lesser Public
+ * License along with this program.  If not, see
+ * <http://www.gnu.org/licenses/lgpl-3.0.html>.
+ * 
+ **/
+
+package net.fustinoni.raspberryPi.pi2Go;
+
+import net.fustinoni.raspberryPi.robot.BaseRobot;
+import net.fustinoni.raspberryPi.robot.component.GenericSwitch;
+import net.fustinoni.raspberryPi.robot.component.SideIRSensors;
+import net.fustinoni.raspberryPi.robot.component.LeftRightMotors;
+import net.fustinoni.raspberryPi.robot.component.FrontalUltraSoundSensor;
+import net.fustinoni.raspberryPi.robot.component.TwoLineSensor;
+import net.fustinoni.raspberryPi.robot.component.PanTiltServos;
+
+/**
+ *
+ * @author efustinoni
+ */
+public abstract class Pi2GoBase extends BaseRobot implements 
+        SideIRSensors, 
+        TwoLineSensor, 
+        LeftRightMotors, 
+        PanTiltServos, 
+        GenericSwitch, 
+        FrontalUltraSoundSensor
+{
+
+    protected Pi2GoBase() {
+        super();
+    }
+
+}

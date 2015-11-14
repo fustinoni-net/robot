@@ -4,7 +4,7 @@
  * This file is part of the PI2GO java library project. 
  *
  * More information about this project can be found here:  
- *   http://pi2go.fustinoni.net
+ *   http://robots.fustinoni.net
  * **********************************************************************
  * 
  * Copyright (C) 2015 Enrico Fustinoni
