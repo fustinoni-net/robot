@@ -68,7 +68,7 @@ jlong getDist(int pin) {
         end = micros();
 
 
-    //Considerare lo spstamento delle assegnazioni fuori dai cicli, per risparmiare tempo
+    //Considerare lo spostamento delle assegnazioni fuori dai cicli, per risparmiare tempo
 
 
     if (start == 00 || end == 0) {
@@ -76,7 +76,7 @@ jlong getDist(int pin) {
     }
 
     unsigned int distanza;
-    distanza = (end - start) * 17190; //distanza in cm
+    distanza = ((end - start) * 17190/100000); //distanza in mm
 
     return distanza;
 }

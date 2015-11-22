@@ -34,7 +34,6 @@ import com.pi4j.io.gpio.PinPullResistance;
 import com.pi4j.io.gpio.event.GpioPinDigitalStateChangeEvent;
 import com.pi4j.io.gpio.event.GpioPinListenerDigital;
 import java.util.ArrayList;
-import java.util.EventListener;
 import java.util.List;
 import net.fustinoni.raspberryPi.robot.component.RobotGPIO;
 import net.fustinoni.raspberryPi.robot.sensor.IRSensor;

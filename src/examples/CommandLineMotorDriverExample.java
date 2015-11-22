@@ -28,7 +28,6 @@
 package examples;
 
 import net.fustinoni.raspberryPi.robot.component.LeftRightMotors;
-import net.fustinoni.raspberryPi.pi2Go.Pi2GoBase;
 import static net.fustinoni.raspberryPi.pi2Go.Pi2GoLite.getPi2GoLite;
 import net.fustinoni.raspberryPi.robot.robotUtils.MotorsDrivers.CommandLineMotorDriver;
 

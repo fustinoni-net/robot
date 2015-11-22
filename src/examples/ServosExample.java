@@ -27,28 +27,41 @@
 
 package examples;
 
-import net.fustinoni.raspberryPi.robot.component.FrontalUltraSoundSensor;
 import static net.fustinoni.raspberryPi.pi2Go.Pi2GoLite.getPi2GoLite;
-import net.fustinoni.raspberryPi.robot.sensor.UltraSoundSensor;
+import net.fustinoni.raspberryPi.robot.device.Servo;
+import net.fustinoni.raspberryPi.robot.component.PanTiltServos;
 
 /**
- *
- * @author efustinoni
+ * https://unpocodejava.wordpress.com/2013/08/15/control-de-motores-con-java-pi4j-en-raspberry-pi/
+ * 
  */
-public class UltarsoundSensorExample {
+public class ServosExample {
     
-    public static void main (String... args) throws InterruptedException{
-        
-        FrontalUltraSoundSensor pi2go = getPi2GoLite();
-        
-        UltraSoundSensor usSensor =  pi2go.getUltraSoundSensor();
-        
-        for (int i = 0; i < 10; ++i){
-            
-            System.out.println(usSensor.getDistance());
-            Thread.sleep(2000);
-        }
+    public static void main( String[] args ) throws InterruptedException {
 
+        PanTiltServos pi2go = getPi2GoLite();
+        
+        Servo tiltServo = pi2go.getTiltServo();
+        Servo panServo = pi2go.getPanServo();
+        
+        tiltServo.setDegree(0);
+        panServo.setDegree(0);
+        Thread.sleep( 2000 );
+        
+
+        tiltServo.setDegree(-90);
+        panServo.setDegree(-90);
+        Thread.sleep( 2000 );
+
+        
+        tiltServo.setDegree(70);
+        panServo.setDegree(70);
+        Thread.sleep( 2000 );
+
+        tiltServo.setDegree(0);
+        panServo.setDegree(0);
+        Thread.sleep( 2000 );
+        
         System.exit(0);
     }
 }

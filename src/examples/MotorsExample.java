@@ -27,9 +27,8 @@
 
 package examples;
 
-import net.fustinoni.raspberryPi.pi2Go.device.MotorImpl;
-import net.fustinoni.raspberryPi.pi2Go.Pi2GoBase;
 import static net.fustinoni.raspberryPi.pi2Go.Pi2GoLite.getPi2GoLite;
+import net.fustinoni.raspberryPi.robot.component.LeftRightMotors;
 import net.fustinoni.raspberryPi.robot.device.Motor;
 
 /**
@@ -40,7 +39,7 @@ public class MotorsExample {
     
     public static void main( String[] args ) throws InterruptedException {
 
-        Pi2GoBase pi2go = getPi2GoLite();
+        LeftRightMotors pi2go = getPi2GoLite();
         
         Motor rightMotor = pi2go.getRightMotor();
         Motor leftMotor = pi2go.getLeftMotor();

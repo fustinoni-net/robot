@@ -120,7 +120,7 @@ public class Pi2GoLite extends Pi2GoBase implements FrontLeds, RearLeds {
         super();
     }
 
-    public synchronized static Pi2GoLite getPi2GoLite() {
+    public final synchronized static Pi2GoLite getPi2GoLite() {
         if (pi2go == null) {
             pi2go = new Pi2GoLite();
         }
