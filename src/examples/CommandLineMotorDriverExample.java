@@ -28,8 +28,10 @@
 package examples;
 
 import net.fustinoni.raspberryPi.robot.component.LeftRightMotors;
-import static net.fustinoni.raspberryPi.pi2Go.Pi2GoLite.getPi2GoLite;
-import net.fustinoni.raspberryPi.robot.robotUtils.MotorsDrivers.CommandLineMotorDriver;
+import static net.fustinoni.raspberryPi.pi2Go.Pi2GoLiteImpl.getPi2GoLite;
+import net.fustinoni.raspberryPi.robot.robotUtils.MotorsDrivers.CommandLine.CommandLineMotorDriver;
+import net.fustinoni.raspberryPi.robot.robotUtils.MotorsDrivers.CommandLine.CommandLineMotorDriverImpl;
+import net.fustinoni.raspberryPi.robot.robotUtils.MotorsDrivers.MotorsDriverImpl;
 
 /**
  *
@@ -40,7 +42,7 @@ public class CommandLineMotorDriverExample {
     public static void main(String[] args) throws InterruptedException {
         
         LeftRightMotors pi2go = getPi2GoLite();
-        CommandLineMotorDriver pi = new CommandLineMotorDriver(pi2go);
+        CommandLineMotorDriver pi = new CommandLineMotorDriverImpl(new MotorsDriverImpl(pi2go));
 
         pi.moveForward(20);
         Thread.sleep( 2000 );

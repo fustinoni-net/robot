@@ -27,7 +27,7 @@
 
 package examples;
 
-import static net.fustinoni.raspberryPi.pi2Go.Pi2GoLite.getPi2GoLite;
+import static net.fustinoni.raspberryPi.pi2Go.Pi2GoLiteImpl.getPi2GoLite;
 import net.fustinoni.raspberryPi.robot.device.Servo;
 import net.fustinoni.raspberryPi.robot.component.PanTiltServos;
 

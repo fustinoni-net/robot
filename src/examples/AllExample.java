@@ -27,9 +27,10 @@
 
 package examples;
 
-import net.fustinoni.raspberryPi.robot.listener.IRSensorListener;
 import net.fustinoni.raspberryPi.pi2Go.Pi2GoLite;
-import static net.fustinoni.raspberryPi.pi2Go.Pi2GoLite.getPi2GoLite;
+import net.fustinoni.raspberryPi.robot.listener.IRSensorListener;
+import net.fustinoni.raspberryPi.pi2Go.Pi2GoLiteImpl;
+import static net.fustinoni.raspberryPi.pi2Go.Pi2GoLiteImpl.getPi2GoLite;
 import net.fustinoni.raspberryPi.robot.device.Led;
 import net.fustinoni.raspberryPi.robot.listener.SwitchListener;
 import net.fustinoni.raspberryPi.robot.listener.UltraSoundSensorListener;
@@ -64,7 +65,7 @@ public class AllExample {
             System.out.println(" --> LineRightIRSensor is: ".concat(isFired ? "on" : "off" ));
         });
 
-        pi2go.getSwitch().addListener((SwitchListener) (boolean isPressed) ->{
+        pi2go.getGenericSwitch().addListener((SwitchListener) (boolean isPressed) ->{
             System.out.println(" --> Button is: ".concat(isPressed ? "pressed" : "release" ));
             exit = true;
         });

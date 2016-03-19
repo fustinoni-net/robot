@@ -27,7 +27,8 @@
 
 package examples;
 
-import static net.fustinoni.raspberryPi.pi2Go.Pi2GoLite.getPi2GoLite;
+import java.rmi.RemoteException;
+import static net.fustinoni.raspberryPi.pi2Go.Pi2GoLiteImpl.getPi2GoLite;
 import net.fustinoni.raspberryPi.robot.component.LeftRightMotors;
 import net.fustinoni.raspberryPi.robot.device.Motor;
 
@@ -48,20 +49,20 @@ public class MotorsExample {
 	while ( count-- > 0 ) {
 		// motor a la derecha al 36%
 		System.out.println( "-->36" );
-		leftMotor.maveForward(36);
-                rightMotor.maveForward(36);
+		leftMotor.moveForward(36);
+                rightMotor.moveForward(36);
 		Thread.sleep( 1000 );
 
 		// motor a la derecha al 96%
 		System.out.println( "-->96" );
-		leftMotor.maveForward(96);
-                rightMotor.maveForward(96);
+		leftMotor.moveForward(96);
+                rightMotor.moveForward(96);
 		Thread.sleep( 1000 );
 		
 		// motor a la derecha al 60%
 		System.out.println( "-->60" );
-		leftMotor.maveForward(60);
-                rightMotor.maveForward(60);
+		leftMotor.moveForward(60);
+                rightMotor.moveForward(60);
 
 		Thread.sleep( 1000 );
 
@@ -74,22 +75,22 @@ public class MotorsExample {
 
 		// como motor derecha = false/0/low, activa motor izquierda 36%
                 System.out.println( "-->36" );
-                leftMotor.maveBackward(36);
-                rightMotor.maveBackward(36);
+                leftMotor.moveBackward(36);
+                rightMotor.moveBackward(36);
 
                 Thread.sleep( 1000 );
 		
 		// motor izquierda 96%
                 System.out.println( "-->96" );
-                leftMotor.maveBackward(96);
-                rightMotor.maveBackward(96);
+                leftMotor.moveBackward(96);
+                rightMotor.moveBackward(96);
 
                 Thread.sleep( 1000 );
 
 		// motor izquierda 60%
                 System.out.println( "-->60" );
-                leftMotor.maveBackward(60);
-                rightMotor.maveBackward(60);
+                leftMotor.moveBackward(60);
+                rightMotor.moveBackward(60);
 
                 Thread.sleep( 1000 );
 

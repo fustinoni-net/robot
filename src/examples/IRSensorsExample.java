@@ -27,9 +27,10 @@
 
 package examples;
 
+import net.fustinoni.raspberryPi.pi2Go.Pi2GoLite;
 import net.fustinoni.raspberryPi.robot.listener.IRSensorListener;
-import net.fustinoni.raspberryPi.pi2Go.Pi2GoBase;
-import static net.fustinoni.raspberryPi.pi2Go.Pi2GoLite.getPi2GoLite;
+import static net.fustinoni.raspberryPi.pi2Go.Pi2GoLiteImpl.getPi2GoLite;
+
 
 /**
  *
@@ -39,7 +40,7 @@ public class IRSensorsExample {
     
     public static void main (String... args) throws InterruptedException{
         
-        Pi2GoBase pi2go = getPi2GoLite();
+        Pi2GoLite pi2go = getPi2GoLite();
 
         pi2go.getLeftIRSensor().addListener((IRSensorListener) (boolean isFired) ->{
             System.out.println(" --> LeftIRSensor is: ".concat(isFired ? "on" : "off" ));
