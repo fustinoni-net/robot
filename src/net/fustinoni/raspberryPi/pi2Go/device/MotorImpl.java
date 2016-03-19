@@ -50,7 +50,7 @@ public class MotorImpl implements Motor {
     }
 
     @Override
-    public void maveForward (int speed){
+    public void moveForward (int speed){
 
         if (!forward){
             SoftPwm.softPwmWrite( backwardPin.getAddress(), 0 );
@@ -67,7 +67,7 @@ public class MotorImpl implements Motor {
     }
     
     @Override
-    public void maveBackward (int speed){
+    public void moveBackward (int speed){
 
         if (forward){
             SoftPwm.softPwmWrite( forwardPin.getAddress(), 0 );

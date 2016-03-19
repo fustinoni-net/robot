@@ -25,18 +25,18 @@
  * 
  **/
 
-package net.fustinoni.raspberryPi.robot.device;
+package net.fustinoni.raspberryPi.robot.component;
+
+import net.fustinoni.raspberryPi.robot.sensor.IRSensor;
 
 /**
  *
  * @author efustinoni
  */
-public interface Motor {
+public interface LineFollowareTwoSensor {
 
-    void moveBackward(int speed);
+    IRSensor getLineLeftIRSensor();
 
-    void moveForward(int speed);
-
-    void stop();
+    IRSensor getLineRightIRSensor();
     
 }

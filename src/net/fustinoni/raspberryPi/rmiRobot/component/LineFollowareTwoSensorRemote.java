@@ -25,18 +25,20 @@
  * 
  **/
 
-package net.fustinoni.raspberryPi.robot.device;
+package net.fustinoni.raspberryPi.rmiRobot.component;
+
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+import net.fustinoni.raspberryPi.rmiRobot.sensor.IRSensorRemote;
 
 /**
  *
  * @author efustinoni
  */
-public interface Motor {
+public interface LineFollowareTwoSensorRemote extends Remote {
 
-    void moveBackward(int speed);
+    IRSensorRemote getLineLeftIRSensor() throws RemoteException;
 
-    void moveForward(int speed);
-
-    void stop();
+    IRSensorRemote getLineRightIRSensor() throws RemoteException;
     
 }

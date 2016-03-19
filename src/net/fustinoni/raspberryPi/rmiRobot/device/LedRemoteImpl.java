@@ -25,18 +25,42 @@
  * 
  **/
 
-package net.fustinoni.raspberryPi.robot.device;
+package net.fustinoni.raspberryPi.rmiRobot.device;
+
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+import net.fustinoni.raspberryPi.robot.device.Led;
 
 /**
  *
  * @author efustinoni
  */
-public interface Motor {
+public class LedRemoteImpl extends UnicastRemoteObject  implements LedRemote{
 
-    void moveBackward(int speed);
+    final Led led;
 
-    void moveForward(int speed);
+    public LedRemoteImpl(final Led led) throws RemoteException {
+        this.led = led;
+    }
 
-    void stop();
+    @Override
+    public void pulse(long duration) throws RemoteException {
+        led.pulse(duration);
+    }
+
+    @Override
+    public void turnOff() throws RemoteException {
+        led.turnOff();
+    }
+
+    @Override
+    public void turnOn() throws RemoteException {
+        led.turnOn();
+    }
     
+    @Override
+    public void toggle() throws RemoteException {
+        led.toggle();
+    }
+
 }

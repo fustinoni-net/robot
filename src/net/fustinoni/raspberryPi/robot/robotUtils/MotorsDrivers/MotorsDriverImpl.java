@@ -25,19 +25,48 @@
  * 
  **/
 
-package net.fustinoni.raspberryPi.pi2Go;
+package net.fustinoni.raspberryPi.robot.robotUtils.MotorsDrivers;
 
-import net.fustinoni.raspberryPi.robot.component.FrontalUltraSoundSensor;
-import net.fustinoni.raspberryPi.robot.component.GenericSwitch;
 import net.fustinoni.raspberryPi.robot.component.LeftRightMotors;
-import net.fustinoni.raspberryPi.robot.component.PanTiltServos;
-import net.fustinoni.raspberryPi.robot.component.SideIRSensors;
-import net.fustinoni.raspberryPi.robot.component.LineFollowareTwoSensor;
+import net.fustinoni.raspberryPi.robot.device.Motor;
+import net.fustinoni.raspberryPi.rmiRobot.component.LeftRightMotorsRemote;
 
 /**
  *
  * @author efustinoni
  */
-public interface Pi2GoBase extends FrontalUltraSoundSensor, GenericSwitch, LeftRightMotors, PanTiltServos, SideIRSensors, LineFollowareTwoSensor {
+public class MotorsDriverImpl implements MotorsDriver {
+    protected final Motor leftMotor;
+    protected final Motor rightMotor;
+
+    public MotorsDriverImpl(final LeftRightMotors robot) {
+        leftMotor = robot.getLeftMotor();
+        rightMotor = robot.getRightMotor();
+    }
+    
+    @Override
+    public void stopMotors (){
+        setMotorsSpeeds(0,0);
+    }
+    
+    @Override
+    public void setMotorsSpeeds(int leftMotorSpeed, int rightMotorSpeed) {
+        setMotorSpeed(leftMotor, leftMotorSpeed);
+        setMotorSpeed(rightMotor, rightMotorSpeed);
+    }
+
+    private void setMotorSpeed( final Motor motor, int speed) {
+
+        speed = speed > 100 ? 100 : speed;
+        speed = speed < -100 ? -100 : speed;
+        
+        if (speed > 0 && speed <= 100) {
+            motor.moveForward(speed);
+        } else if (speed >= -100 && speed < 0) {
+            motor.moveBackward(-speed);
+        } else {
+            motor.stop();
+        }
+    }
     
 }

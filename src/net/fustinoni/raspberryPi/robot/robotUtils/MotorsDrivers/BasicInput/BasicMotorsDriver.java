@@ -25,18 +25,27 @@
  * 
  **/
 
-package net.fustinoni.raspberryPi.robot.device;
+package net.fustinoni.raspberryPi.robot.robotUtils.MotorsDrivers.BasicInput;
+
+import net.fustinoni.raspberryPi.robot.robotUtils.MotorsDrivers.MotorsDriver;
 
 /**
  *
  * @author efustinoni
  */
-public interface Motor {
+public class BasicMotorsDriver {
 
-    void moveBackward(int speed);
-
-    void moveForward(int speed);
-
-    void stop();
+    final MotorsDriver motors;
     
+    public BasicMotorsDriver(final MotorsDriver motors) {
+        this.motors = motors;
+    }
+
+    public void setMotorsSpeeds(int leftMotorSpeed, int rightMotorSpeed) {
+        motors.setMotorsSpeeds(leftMotorSpeed, rightMotorSpeed); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void stopMotors() {
+        motors.stopMotors(); //To change body of generated methods, choose Tools | Templates.
+    }
 }

@@ -25,18 +25,33 @@
  * 
  **/
 
-package net.fustinoni.raspberryPi.robot.device;
+package net.fustinoni.raspberryPi.rmiRobot.component;
+
+import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import net.fustinoni.raspberryPi.rmiRobot.device.LedLocal;
+import net.fustinoni.raspberryPi.robot.component.RearLeds;
+import net.fustinoni.raspberryPi.robot.device.Led;
 
 /**
  *
  * @author efustinoni
  */
-public interface Motor {
+public class RearLedsLocal implements RearLeds{
+    private final RearLedsRemote leds;
 
-    void moveBackward(int speed);
+    public RearLedsLocal(final RearLedsRemote leds) {
+        this.leds = leds;
+    }
 
-    void moveForward(int speed);
-
-    void stop();
-    
+    @Override
+    public Led getRearLeds() {
+        try {
+            return new LedLocal(leds.getRearLeds());
+        } catch (RemoteException ex) {
+            Logger.getLogger(RearLedsLocal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 }

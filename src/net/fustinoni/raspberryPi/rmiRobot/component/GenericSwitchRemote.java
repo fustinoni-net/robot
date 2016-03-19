@@ -25,18 +25,18 @@
  * 
  **/
 
-package net.fustinoni.raspberryPi.robot.device;
+package net.fustinoni.raspberryPi.rmiRobot.component;
+
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+import net.fustinoni.raspberryPi.rmiRobot.sensor.SwitchRemote;
 
 /**
  *
  * @author efustinoni
  */
-public interface Motor {
+public interface GenericSwitchRemote extends Remote {
 
-    void moveBackward(int speed);
+    SwitchRemote getGenericSwitch() throws RemoteException;
 
-    void moveForward(int speed);
-
-    void stop();
-    
 }

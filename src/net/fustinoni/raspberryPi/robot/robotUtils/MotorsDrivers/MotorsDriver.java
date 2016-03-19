@@ -24,19 +24,16 @@
  * <http://www.gnu.org/licenses/lgpl-3.0.html>.
  * 
  **/
-
-package net.fustinoni.raspberryPi.robot.device;
+package net.fustinoni.raspberryPi.robot.robotUtils.MotorsDrivers;
 
 /**
  *
  * @author efustinoni
  */
-public interface Motor {
+public interface MotorsDriver {
 
-    void moveBackward(int speed);
+    void setMotorsSpeeds(int leftMotorSpeed, int rightMotorSpeed);
 
-    void moveForward(int speed);
-
-    void stop();
+    void stopMotors();
     
 }

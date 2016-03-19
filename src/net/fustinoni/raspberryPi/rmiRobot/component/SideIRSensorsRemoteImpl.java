@@ -25,18 +25,37 @@
  * 
  **/
 
-package net.fustinoni.raspberryPi.robot.device;
+package net.fustinoni.raspberryPi.rmiRobot.component;
+
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+import net.fustinoni.raspberryPi.pi2Go.Pi2GoLite;
+import net.fustinoni.raspberryPi.rmiRobot.sensor.IRSensorRemote;
+import net.fustinoni.raspberryPi.rmiRobot.sensor.IRSensorRemoteImpl;
+import net.fustinoni.raspberryPi.robot.component.SideIRSensors;
+
 
 /**
  *
  * @author efustinoni
  */
-public interface Motor {
+public class SideIRSensorsRemoteImpl extends UnicastRemoteObject  implements SideIRSensorsRemote {
 
-    void moveBackward(int speed);
+    final SideIRSensors sensor;
+    
+    public SideIRSensorsRemoteImpl(final Pi2GoLite pi2Go) throws RemoteException {
+        sensor = pi2Go;
+    }
 
-    void moveForward(int speed);
+    @Override
+    public IRSensorRemote getLeftIRSensor() throws RemoteException {
+        return new IRSensorRemoteImpl(sensor.getLeftIRSensor()) ;
+    }
 
-    void stop();
+    @Override
+    public IRSensorRemote getRightIRSensor() throws RemoteException {
+        return new IRSensorRemoteImpl(sensor.getRightIRSensor());
+    }
+    
     
 }

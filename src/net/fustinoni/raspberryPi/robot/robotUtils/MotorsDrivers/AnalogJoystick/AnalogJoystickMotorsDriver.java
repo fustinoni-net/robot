@@ -25,18 +25,16 @@
  * 
  **/
 
-package net.fustinoni.raspberryPi.robot.device;
+package net.fustinoni.raspberryPi.robot.robotUtils.MotorsDrivers.AnalogJoystick;
 
 /**
  *
  * @author efustinoni
  */
-public interface Motor {
+public interface AnalogJoystickMotorsDriver {
 
-    void moveBackward(int speed);
+    void jostickImput(int x, int y, int xMin, int xMax, int yMin, int yMax, int xCenter, int yCenter);
 
-    void moveForward(int speed);
-
-    void stop();
+    void stopMotors();
     
 }

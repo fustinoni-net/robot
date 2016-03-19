@@ -25,18 +25,29 @@
  * 
  **/
 
-package net.fustinoni.raspberryPi.robot.device;
+package net.fustinoni.raspberryPi.rmiRobot.listener;
+
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+import net.fustinoni.raspberryPi.robot.listener.UltraSoundSensorListener;
 
 /**
  *
  * @author efustinoni
  */
-public interface Motor {
+public class UltraSoundSensorListenerRemoteImpl extends UnicastRemoteObject implements UltraSoundSensorListenerRemote {
+    
+    private final UltraSoundSensorListener listener;
 
-    void moveBackward(int speed);
+    public UltraSoundSensorListenerRemoteImpl(final UltraSoundSensorListener listener) throws RemoteException {
+        this.listener = listener;
+    }
 
-    void moveForward(int speed);
-
-    void stop();
+    @Override
+    public void tick(long distance) throws RemoteException {
+        listener.tick(distance);
+    }
+    
+    
     
 }

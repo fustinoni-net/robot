@@ -25,18 +25,33 @@
  * 
  **/
 
-package net.fustinoni.raspberryPi.robot.device;
+package net.fustinoni.raspberryPi.rmiRobot.component;
+
+import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import net.fustinoni.raspberryPi.rmiRobot.sensor.SwitchLocal;
+import net.fustinoni.raspberryPi.robot.component.GenericSwitch;
+import net.fustinoni.raspberryPi.robot.sensor.Switch;
 
 /**
  *
  * @author efustinoni
  */
-public interface Motor {
+public class GenericSwitchLocal implements GenericSwitch{
+    private final GenericSwitchRemote genericSwitch;
 
-    void moveBackward(int speed);
+    public GenericSwitchLocal(final GenericSwitchRemote genericSwitch) {
+        this.genericSwitch = genericSwitch;
+    }
 
-    void moveForward(int speed);
-
-    void stop();
-    
+    @Override
+    public Switch getGenericSwitch() {
+        try {
+            return new SwitchLocal(genericSwitch.getGenericSwitch());
+        } catch (RemoteException ex) {
+            Logger.getLogger(GenericSwitchLocal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 }

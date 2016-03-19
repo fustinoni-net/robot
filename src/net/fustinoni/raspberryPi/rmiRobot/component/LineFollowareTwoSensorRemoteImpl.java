@@ -25,18 +25,37 @@
  * 
  **/
 
-package net.fustinoni.raspberryPi.robot.device;
+package net.fustinoni.raspberryPi.rmiRobot.component;
+
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+import net.fustinoni.raspberryPi.pi2Go.Pi2GoLite;
+import net.fustinoni.raspberryPi.rmiRobot.sensor.IRSensorRemote;
+import net.fustinoni.raspberryPi.rmiRobot.sensor.IRSensorRemoteImpl;
+import net.fustinoni.raspberryPi.robot.component.LineFollowareTwoSensor;
+
 
 /**
  *
  * @author efustinoni
  */
-public interface Motor {
+public class LineFollowareTwoSensorRemoteImpl extends UnicastRemoteObject  implements LineFollowareTwoSensorRemote {
 
-    void moveBackward(int speed);
+    final LineFollowareTwoSensor sensor;
+    
+    public LineFollowareTwoSensorRemoteImpl(final Pi2GoLite pi2Go) throws RemoteException {
+        sensor = pi2Go;
+    }
 
-    void moveForward(int speed);
+    @Override
+    public IRSensorRemote getLineLeftIRSensor() throws RemoteException {
+        return new IRSensorRemoteImpl(sensor.getLineLeftIRSensor()) ;
+    }
 
-    void stop();
+    @Override
+    public IRSensorRemote getLineRightIRSensor() throws RemoteException {
+        return new IRSensorRemoteImpl(sensor.getLineRightIRSensor());
+    }
+    
     
 }

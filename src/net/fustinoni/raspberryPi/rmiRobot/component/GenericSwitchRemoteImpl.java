@@ -25,18 +25,29 @@
  * 
  **/
 
-package net.fustinoni.raspberryPi.robot.device;
+package net.fustinoni.raspberryPi.rmiRobot.component;
+
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+import net.fustinoni.raspberryPi.rmiRobot.sensor.SwitchRemote;
+import net.fustinoni.raspberryPi.rmiRobot.sensor.SwitchRemoteImpl;
+import net.fustinoni.raspberryPi.robot.component.GenericSwitch;
 
 /**
  *
  * @author efustinoni
  */
-public interface Motor {
+public class GenericSwitchRemoteImpl extends UnicastRemoteObject  implements GenericSwitchRemote {
 
-    void moveBackward(int speed);
-
-    void moveForward(int speed);
-
-    void stop();
+    final GenericSwitch genericSwitch;
     
+    public GenericSwitchRemoteImpl(final GenericSwitch gSwitch) throws RemoteException {
+        genericSwitch = gSwitch;
+    }
+
+    @Override
+    public SwitchRemote getGenericSwitch() throws RemoteException {
+        return new SwitchRemoteImpl(genericSwitch.getGenericSwitch());
+    }
+
 }

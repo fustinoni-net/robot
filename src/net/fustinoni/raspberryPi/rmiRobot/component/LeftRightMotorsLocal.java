@@ -25,19 +25,43 @@
  * 
  **/
 
-package net.fustinoni.raspberryPi.pi2Go;
+package net.fustinoni.raspberryPi.rmiRobot.component;
 
-import net.fustinoni.raspberryPi.robot.component.FrontalUltraSoundSensor;
-import net.fustinoni.raspberryPi.robot.component.GenericSwitch;
+import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import net.fustinoni.raspberryPi.rmiRobot.device.MotorLocal;
 import net.fustinoni.raspberryPi.robot.component.LeftRightMotors;
-import net.fustinoni.raspberryPi.robot.component.PanTiltServos;
-import net.fustinoni.raspberryPi.robot.component.SideIRSensors;
-import net.fustinoni.raspberryPi.robot.component.LineFollowareTwoSensor;
+import net.fustinoni.raspberryPi.robot.device.Motor;
 
 /**
  *
  * @author efustinoni
  */
-public interface Pi2GoBase extends FrontalUltraSoundSensor, GenericSwitch, LeftRightMotors, PanTiltServos, SideIRSensors, LineFollowareTwoSensor {
-    
+public class LeftRightMotorsLocal implements LeftRightMotors{
+    final private LeftRightMotorsRemote motors;
+
+    public LeftRightMotorsLocal(final LeftRightMotorsRemote motors) {
+        this.motors = motors;
+    }
+
+    @Override
+    public Motor getLeftMotor() {
+        try {
+            return new MotorLocal (motors.getLeftMotor());
+        } catch (RemoteException ex) {
+            Logger.getLogger(LeftRightMotorsLocal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    @Override
+    public Motor getRightMotor() {
+        try {
+            return new MotorLocal(motors.getRightMotor());
+        } catch (RemoteException ex) {
+            Logger.getLogger(LeftRightMotorsLocal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 }

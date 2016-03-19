@@ -25,57 +25,43 @@
  * 
  **/
 
-package net.fustinoni.raspberryPi.pi2Go;
+package net.fustinoni.raspberryPi.rmiRobot.sensor;
 
-import net.fustinoni.raspberryPi.robot.component.FrontLeds;
-import net.fustinoni.raspberryPi.robot.component.RearLeds;
-import net.fustinoni.raspberryPi.robot.device.Led;
-import net.fustinoni.raspberryPi.robot.device.Motor;
-import net.fustinoni.raspberryPi.robot.device.Servo;
-import net.fustinoni.raspberryPi.robot.sensor.IRSensor;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+import net.fustinoni.raspberryPi.rmiRobot.listener.SwitchListenerLocal;
+import net.fustinoni.raspberryPi.rmiRobot.listener.SwitchListenerRemote;
 import net.fustinoni.raspberryPi.robot.sensor.Switch;
-import net.fustinoni.raspberryPi.robot.sensor.UltraSoundSensor;
 
 /**
  *
  * @author efustinoni
  */
-public interface Pi2GoLite extends Pi2GoBase, FrontLeds, RearLeds  {
+public class SwitchRemoteImpl extends UnicastRemoteObject implements SwitchRemote{
+    
+    private final Switch baseSwitch;
+
+    public SwitchRemoteImpl(final Switch baseSwitch) throws RemoteException  {
+        this.baseSwitch = baseSwitch;
+    }
 
     @Override
-    Led getFrontLeds();
+    public void addListener(SwitchListenerRemote listener) throws RemoteException {
+        baseSwitch.addListener(new SwitchListenerLocal(listener));
+    }
 
     @Override
-    IRSensor getLeftIRSensor();
+    public long getLastPressionMillisec() throws RemoteException {
+        return baseSwitch.getLastPressionMillisec();
+    }
 
     @Override
-    Motor getLeftMotor();
+    public boolean isPushed() throws RemoteException {
+        return baseSwitch.isPushed();
+    }
 
     @Override
-    IRSensor getLineLeftIRSensor();
-
-    @Override
-    IRSensor getLineRightIRSensor();
-
-    @Override
-    Servo getPanServo();
-
-    @Override
-    Led getRearLeds();
-
-    @Override
-    IRSensor getRightIRSensor();
-
-    @Override
-    Motor getRightMotor();
-
-    @Override
-    Servo getTiltServo();
-
-    @Override
-    UltraSoundSensor getUltraSoundSensor();
-
-    @Override
-    Switch getGenericSwitch();
-
+    public void removeListener(SwitchListenerRemote listener) throws RemoteException {
+        baseSwitch.removeListener(new SwitchListenerLocal(listener));
+    }
 }

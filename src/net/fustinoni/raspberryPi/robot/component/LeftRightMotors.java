@@ -27,13 +27,14 @@
 
 package net.fustinoni.raspberryPi.robot.component;
 
+import java.rmi.Remote;
 import net.fustinoni.raspberryPi.robot.device.Motor;
 
 /**
  *
  * @author efustinoni
  */
-public interface LeftRightMotors {
+public interface LeftRightMotors extends Remote{
 
     Motor getLeftMotor();
 

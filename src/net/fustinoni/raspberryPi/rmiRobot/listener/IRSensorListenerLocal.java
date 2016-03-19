@@ -25,18 +25,31 @@
  * 
  **/
 
-package net.fustinoni.raspberryPi.robot.device;
+package net.fustinoni.raspberryPi.rmiRobot.listener;
+
+import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import net.fustinoni.raspberryPi.robot.listener.IRSensorListener;
 
 /**
  *
  * @author efustinoni
  */
-public interface Motor {
+public class IRSensorListenerLocal implements IRSensorListener {
 
-    void moveBackward(int speed);
+    private final IRSensorListenerRemote listener;
 
-    void moveForward(int speed);
+    public IRSensorListenerLocal(final IRSensorListenerRemote listener) {
+        this.listener = listener;
+    }
 
-    void stop();
-    
+    @Override
+    public void triggered(boolean isFired){
+        try {
+            listener.triggered(isFired);
+        } catch (RemoteException ex) {
+            Logger.getLogger(IRSensorListenerLocal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

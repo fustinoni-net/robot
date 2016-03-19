@@ -1,13 +1,4 @@
-/**
- * 
- * **********************************************************************
- * This file is part of the PI2GO java library project. 
- *
- * More information about this project can be found here:  
- *   http://robots.fustinoni.net
- * **********************************************************************
- * 
- * Copyright (C) 2015 Enrico Fustinoni
+/* * Copyright (C) 2015 Enrico Fustinoni
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as
@@ -25,18 +16,26 @@
  * 
  **/
 
-package net.fustinoni.raspberryPi.robot.device;
+package net.fustinoni.raspberryPi.rmiRobot.sensor;
+
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+import net.fustinoni.raspberryPi.rmiRobot.listener.UltraSoundSensorListenerRemote;
 
 /**
  *
  * @author efustinoni
  */
-public interface Motor {
+public interface UltraSoundSensorRemote extends Remote{
 
-    void moveBackward(int speed);
+    void addListener(UltraSoundSensorListenerRemote listener) throws RemoteException;
 
-    void moveForward(int speed);
+    long getDistance() throws RemoteException;
 
-    void stop();
+    void removeListener(UltraSoundSensorListenerRemote listener) throws RemoteException;
+
+    void startSensor(int intervallSeconds) throws RemoteException;
+
+    void stopSensor() throws RemoteException;
     
 }

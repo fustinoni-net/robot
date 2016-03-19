@@ -25,18 +25,21 @@
  * 
  **/
 
-package net.fustinoni.raspberryPi.robot.device;
+package net.fustinoni.raspberryPi.rmiRobot.component;
+
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+import net.fustinoni.raspberryPi.rmiRobot.device.MotorRemote;
+
 
 /**
  *
  * @author efustinoni
  */
-public interface Motor {
+public interface LeftRightMotorsRemote extends Remote{
 
-    void moveBackward(int speed);
+    MotorRemote getLeftMotor() throws RemoteException;
 
-    void moveForward(int speed);
+    MotorRemote getRightMotor() throws RemoteException;
 
-    void stop();
-    
 }

@@ -24,58 +24,55 @@
  * <http://www.gnu.org/licenses/lgpl-3.0.html>.
  * 
  **/
+package net.fustinoni.raspberryPi.robot.robotUtils.MotorsDrivers.CommandLine;
 
-package net.fustinoni.raspberryPi.pi2Go;
-
-import net.fustinoni.raspberryPi.robot.component.FrontLeds;
-import net.fustinoni.raspberryPi.robot.component.RearLeds;
-import net.fustinoni.raspberryPi.robot.device.Led;
-import net.fustinoni.raspberryPi.robot.device.Motor;
-import net.fustinoni.raspberryPi.robot.device.Servo;
-import net.fustinoni.raspberryPi.robot.sensor.IRSensor;
-import net.fustinoni.raspberryPi.robot.sensor.Switch;
-import net.fustinoni.raspberryPi.robot.sensor.UltraSoundSensor;
+import net.fustinoni.raspberryPi.robot.robotUtils.MotorsDrivers.MotorsDriver;
 
 /**
  *
  * @author efustinoni
  */
-public interface Pi2GoLite extends Pi2GoBase, FrontLeds, RearLeds  {
+public class CommandLineMotorDriverImpl implements CommandLineMotorDriver {
+
+    final MotorsDriver motors;
+    public CommandLineMotorDriverImpl(final MotorsDriver motors) {
+        this.motors = motors;
+    }
+
 
     @Override
-    Led getFrontLeds();
+    public void stopMotors() {
+        motors.stopMotors();
+    }
 
     @Override
-    IRSensor getLeftIRSensor();
+    public void moveForward (int speed){
+        motors.setMotorsSpeeds(speed, speed);
+    }
 
     @Override
-    Motor getLeftMotor();
+    public void moveBackward (int speed){
+        motors.setMotorsSpeeds(-speed, -speed);
+    }
+    
+    @Override
+    public void spinRight (int speed){
+        motors.setMotorsSpeeds(speed, -speed);
+    }
+    
+    @Override
+    public void spinLeft (int speed){
+        motors.setMotorsSpeeds(-speed, speed);
+    }
+    
+    @Override
+    public void moveLeft (int speed, int angle){
+        motors.setMotorsSpeeds(speed - speed * angle/100, speed);
+    }
 
     @Override
-    IRSensor getLineLeftIRSensor();
-
-    @Override
-    IRSensor getLineRightIRSensor();
-
-    @Override
-    Servo getPanServo();
-
-    @Override
-    Led getRearLeds();
-
-    @Override
-    IRSensor getRightIRSensor();
-
-    @Override
-    Motor getRightMotor();
-
-    @Override
-    Servo getTiltServo();
-
-    @Override
-    UltraSoundSensor getUltraSoundSensor();
-
-    @Override
-    Switch getGenericSwitch();
-
+    public void moveRight (int speed, int angle){
+        motors.setMotorsSpeeds(speed, speed - speed * angle/100);
+    }
+    
 }

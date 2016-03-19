@@ -24,19 +24,26 @@
  * <http://www.gnu.org/licenses/lgpl-3.0.html>.
  * 
  **/
-
-package net.fustinoni.raspberryPi.robot.device;
+package net.fustinoni.raspberryPi.robot.robotUtils.MotorsDrivers.CommandLine;
 
 /**
  *
  * @author efustinoni
  */
-public interface Motor {
+public interface CommandLineMotorDriver {
 
     void moveBackward(int speed);
 
     void moveForward(int speed);
 
-    void stop();
+    void moveLeft(int speed, int angle);
+
+    void moveRight(int speed, int angle);
+
+    void spinLeft(int speed);
+
+    void spinRight(int speed);
+
+    void stopMotors();
     
 }

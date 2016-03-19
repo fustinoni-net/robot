@@ -25,18 +25,30 @@
  * 
  **/
 
-package net.fustinoni.raspberryPi.robot.device;
+package net.fustinoni.raspberryPi.rmiRobot.listener;
+
+import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import net.fustinoni.raspberryPi.robot.listener.SwitchListener;
 
 /**
  *
  * @author efustinoni
  */
-public interface Motor {
+public class SwitchListenerLocal implements SwitchListener{
+    final SwitchListenerRemote listener;
 
-    void moveBackward(int speed);
+    public SwitchListenerLocal(final SwitchListenerRemote listener) {
+        this.listener = listener;
+    }
 
-    void moveForward(int speed);
-
-    void stop();
-    
+    @Override
+    public void changedEvent(boolean isPressed) {
+        try {
+            listener.changedEvent(isPressed);
+        } catch (RemoteException ex) {
+            Logger.getLogger(SwitchListenerLocal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

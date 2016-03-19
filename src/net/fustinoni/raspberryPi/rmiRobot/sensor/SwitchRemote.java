@@ -25,18 +25,25 @@
  * 
  **/
 
-package net.fustinoni.raspberryPi.robot.device;
+package net.fustinoni.raspberryPi.rmiRobot.sensor;
+
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+import net.fustinoni.raspberryPi.rmiRobot.listener.SwitchListenerRemote;
 
 /**
  *
  * @author efustinoni
  */
-public interface Motor {
+public interface SwitchRemote extends Remote{
 
-    void moveBackward(int speed);
+    
+    void addListener(SwitchListenerRemote listener) throws RemoteException;
 
-    void moveForward(int speed);
+    long getLastPressionMillisec() throws RemoteException;
 
-    void stop();
+    boolean isPushed() throws RemoteException;
+
+    void removeListener(SwitchListenerRemote listener) throws RemoteException;
     
 }

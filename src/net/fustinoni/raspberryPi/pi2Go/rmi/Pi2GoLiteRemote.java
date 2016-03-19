@@ -25,18 +25,20 @@
  * 
  **/
 
-package net.fustinoni.raspberryPi.robot.device;
+package net.fustinoni.raspberryPi.pi2Go.rmi;
+
+import net.fustinoni.raspberryPi.rmiRobot.BaseRobotRemote;
+import net.fustinoni.raspberryPi.rmiRobot.component.FrontLedsRemote;
+import net.fustinoni.raspberryPi.rmiRobot.component.GenericSwitchRemote;
+import net.fustinoni.raspberryPi.rmiRobot.component.LeftRightMotorsRemote;
+import net.fustinoni.raspberryPi.rmiRobot.component.LineFollowareTwoSensorRemote;
+import net.fustinoni.raspberryPi.rmiRobot.component.RearLedsRemote;
+import net.fustinoni.raspberryPi.rmiRobot.sensor.SideIRSensorsRemote;
 
 /**
  *
  * @author efustinoni
  */
-public interface Motor {
-
-    void moveBackward(int speed);
-
-    void moveForward(int speed);
-
-    void stop();
-    
+public interface Pi2GoLiteRemote extends  LeftRightMotorsRemote, SideIRSensorsRemote, GenericSwitchRemote, FrontLedsRemote, RearLedsRemote, BaseRobotRemote, LineFollowareTwoSensorRemote {
+  
 }

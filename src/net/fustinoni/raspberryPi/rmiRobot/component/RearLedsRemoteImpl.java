@@ -25,18 +25,29 @@
  * 
  **/
 
-package net.fustinoni.raspberryPi.robot.device;
+package net.fustinoni.raspberryPi.rmiRobot.component;
+
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+import net.fustinoni.raspberryPi.rmiRobot.device.LedRemote;
+import net.fustinoni.raspberryPi.rmiRobot.device.LedRemoteImpl;
+import net.fustinoni.raspberryPi.robot.component.RearLeds;
 
 /**
  *
  * @author efustinoni
  */
-public interface Motor {
+public class RearLedsRemoteImpl extends UnicastRemoteObject  implements RearLedsRemote{
 
-    void moveBackward(int speed);
-
-    void moveForward(int speed);
-
-    void stop();
+    final RearLeds frontLeds;
     
+    public RearLedsRemoteImpl(final RearLeds frontLeds) throws RemoteException {
+        this.frontLeds = frontLeds;
+    }
+
+    
+    @Override
+    public LedRemote getRearLeds() throws RemoteException {
+        return new LedRemoteImpl(frontLeds.getRearLeds()) ;
+    }
 }

@@ -35,6 +35,6 @@ import net.fustinoni.raspberryPi.robot.sensor.Switch;
  */
 public interface GenericSwitch {
 
-    Switch getSwitch();
+    Switch getGenericSwitch();
    
 }

@@ -25,18 +25,35 @@
  * 
  **/
 
-package net.fustinoni.raspberryPi.robot.device;
+package net.fustinoni.raspberryPi.rmiRobot.component;
+
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+import net.fustinoni.raspberryPi.rmiRobot.device.MotorRemote;
+import net.fustinoni.raspberryPi.rmiRobot.device.MotorRemoteImpl;
+import net.fustinoni.raspberryPi.robot.component.LeftRightMotors;
 
 /**
  *
  * @author efustinoni
  */
-public interface Motor {
+public class LeftRightMotorsRemoteImpl extends UnicastRemoteObject  implements LeftRightMotorsRemote{
 
-    void moveBackward(int speed);
-
-    void moveForward(int speed);
-
-    void stop();
+    final LeftRightMotors leftRightMotors;
     
+    public LeftRightMotorsRemoteImpl(final LeftRightMotors lrMotors) throws RemoteException {
+        leftRightMotors = lrMotors;
+    }
+
+
+    @Override
+    public MotorRemote getLeftMotor() throws RemoteException {
+        return new MotorRemoteImpl (leftRightMotors.getLeftMotor());
+    }
+
+    @Override
+    public MotorRemote getRightMotor() throws RemoteException {
+        return new MotorRemoteImpl (leftRightMotors.getRightMotor());
+    }
+
 }

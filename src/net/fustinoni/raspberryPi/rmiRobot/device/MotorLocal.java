@@ -25,18 +25,49 @@
  * 
  **/
 
-package net.fustinoni.raspberryPi.robot.device;
+package net.fustinoni.raspberryPi.rmiRobot.device;
+
+import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import net.fustinoni.raspberryPi.robot.device.Motor;
 
 /**
  *
  * @author efustinoni
  */
-public interface Motor {
+public class MotorLocal implements Motor{
 
-    void moveBackward(int speed);
+    private final MotorRemote motor;
 
-    void moveForward(int speed);
+    public MotorLocal(final MotorRemote motor) {
+        this.motor = motor;
+    }
 
-    void stop();
-    
+    @Override
+    public void moveBackward(int speed) {
+        try {
+            motor.moveBackward(speed);
+        } catch (RemoteException ex) {
+            Logger.getLogger(MotorLocal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void moveForward(int speed) {
+        try {
+            motor.moveForward(speed);
+        } catch (RemoteException ex) {
+            Logger.getLogger(MotorLocal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void stop() {
+        try {
+            motor.stop();
+        } catch (RemoteException ex) {
+            Logger.getLogger(MotorLocal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
