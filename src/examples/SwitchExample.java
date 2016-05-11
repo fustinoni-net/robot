@@ -28,7 +28,7 @@
 package examples;
 
 import net.fustinoni.raspberryPi.robot.component.GenericSwitch;
-import static net.fustinoni.raspberryPi.pi2Go.Pi2GoLiteImpl.getPi2GoLite;
+import static net.fustinoni.raspberryPi.pi2Go.Pi2GoLite.getPi2GoLite;
 import net.fustinoni.raspberryPi.robot.listener.SwitchListener;
 import net.fustinoni.raspberryPi.robot.sensor.Switch;
 
@@ -42,7 +42,7 @@ public class SwitchExample {
         
         GenericSwitch pi2go = getPi2GoLite();
 
-        Switch button = pi2go.getGenericSwitch();
+        Switch button = pi2go.getSwitch();
         System.out.println(button.getLastPressionMillisec());
         
         button.addListener((SwitchListener) (boolean isPressed) ->{
