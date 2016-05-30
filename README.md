@@ -1,3 +1,9 @@
+# This project is not maintained anymore. See:
+
+ https://github.com/fustinoni-net/PiRobotPlatform
+ 
+
+
 # robot
 Java API to control a PI2GO Lite robot and maybe, in the future, other simple robot.
 
